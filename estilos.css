@@ -1,0 +1,446 @@
+/* PALETA DE COLORES MATE Y CONFIGURACIÓN GENERAL */
+:root {
+    --azul-colegio: #1b4f72;       /* Azul principal opaco */
+    --azul-oscuro: #154360;        /* Variación para botones activos */
+    --plomo-oscuro: #5d6d7e;       /* Gris mate para textos informativos */
+    --plomo-fondo: #f2f4f4;        /* Fondo general de la plataforma */
+    --plomo-borde: #d5dbdb;        /* Líneas divisorias finas */
+    --blanco-tarjeta: #ffffff;     /* Fondo de bloques de estudio */
+    --spyder-dark: #1c1e22;        /* Negro Spyder para consolas de código */
+    
+    /* Estados de validación mate */
+    --color-facil: #5d6d7e;
+    --color-medio: #9a7d0a;
+    --color-dificil: #1b4f72;
+    --color-reto: #2980b9;
+    
+    --sombra-dashboard: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* RESETEO DE MÁRGENES NATIVOS */
+body, html {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: var(--plomo-fondo);
+    color: #2c3e50;
+    overflow: hidden; /* Evita que la pantalla completa rebote */
+}
+
+/* CONTENEDOR CONTROLLING: DIVISIÓN EN DOS COLUMNAS REALES */
+.dashboard-container {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+
+/* BARRA LATERAL IZQUIERDA (MENÚ FIJO) */
+.sidebar-panel {
+    width: 280px;
+    background-color: #2c3e50; /* Gris azulado oscuro industrial */
+    color: var(--blanco-tarjeta);
+    display: flex;
+    flex-direction: column;
+    border-right: 4px solid var(--azul-colegio);
+    flex-shrink: 0;
+}
+
+.sidebar-header {
+    padding: 25px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.badge-tecnico-mini {
+    background-color: var(--azul-colegio);
+    color: var(--blanco-tarjeta);
+    font-size: 0.65rem;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.sidebar-header h2 {
+    margin: 8px 0 2px 0;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.sidebar-header p {
+    margin: 0;
+    font-size: 0.78rem;
+    opacity: 0.7;
+}
+/* COMPONENTE: BUSCADOR DENTRO DE LA BARRA LATERAL */
+.sidebar-search-box {
+    padding: 15px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-search-box input {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 0.85rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    color: var(--blanco-tarjeta);
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+}
+
+.sidebar-search-box input:focus {
+    outline: none;
+    background-color: var(--blanco-tarjeta);
+    color: #2c3e50;
+    border-color: var(--azul-colegio);
+}
+
+/* LISTA DE NAVEGACIÓN MODULAR */
+.sidebar-nav {
+    flex: 1;
+    padding: 15px 10px;
+    overflow-y: auto; /* Permite scroll si hay muchos módulos */
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+/* BOTONES INTERACTIVOS DE LAS PESTAÑAS */
+.nav-btn {
+    width: 100%;
+    background: none;
+    border: none;
+    color: #b2babb; /* Gris claro mate */
+    padding: 12px 15px;
+    text-align: left;
+    font-size: 0.88rem;
+    font-weight: 500;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.15s ease;
+}
+
+.nav-btn span {
+    font-size: 0.7rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: var(--blanco-tarjeta);
+}
+
+/* ESTADOS DE INTERACCIÓN (MATE) */
+.nav-btn:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--blanco-tarjeta);
+}
+
+.nav-btn.active {
+    background-color: var(--azul-colegio);
+    color: var(--blanco-tarjeta);
+    font-weight: 600;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.nav-btn.active span {
+    background-color: var(--azul-oscuro);
+}
+/* ÁREA DE TRABAJO DERECHA (PANEL ACTIVO CON SCROLL PROPIO) */
+.main-workspace {
+    flex: 1;
+    height: 100vh;
+    overflow-y: auto;
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+/* SISTEMA DINÁMICO DE PESTAÑAS: OCULTA O MUESTRA SECCIONES */
+.module-section {
+    display: none; /* Todo oculto por defecto */
+    animation: cargarPantalla 0.25s ease-out forwards;
+}
+
+.module-section.active-section {
+    display: block; /* Solo se muestra la pestaña activa */
+}
+
+@keyframes cargarPantalla {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* DISEÑO DE LA CABECERA INTERNA DE CADA TEMA */
+.section-title-card {
+    background-color: var(--blanco-tarjeta);
+    padding: 25px;
+    border-radius: 10px;
+    border: 1px solid var(--plomo-borde);
+    border-left: 6px solid var(--azul-colegio);
+    margin-bottom: 25px;
+    box-shadow: var(--sombra-dashboard);
+}
+
+.section-tag {
+    font-size: 0.72rem;
+    font-weight: bold;
+    color: var(--plomo-oscuro);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.section-title-card h2 {
+    margin: 5px 0 0 0;
+    font-size: 1.45rem;
+    color: var(--azul-colegio);
+    font-weight: 600;
+}
+
+/* REGLA GRID: DISTRIBUCIÓN TEORÍA A LA IZQUIERDA Y VIDEO A LA DERECHA */
+.card-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin-bottom: 25px;
+}
+
+@media (max-width: 900px) {
+    .card-grid {
+        grid-template-columns: 1fr; /* Se hace una sola columna en pantallas chicas */
+    }
+}
+/* COMPONENTE: TARJETA DE INFORMACIÓN TEÓRICA */
+.text-card-info {
+    background-color: var(--blanco-tarjeta);
+    padding: 22px;
+    border-radius: 10px;
+    border: 1px solid var(--plomo-borde);
+    box-shadow: var(--sombra-dashboard);
+}
+
+.text-card-info h3 {
+    margin: 0 0 12px 0;
+    font-size: 1.1rem;
+    color: var(--azul-colegio);
+}
+
+.text-card-info p {
+    font-size: 0.92rem;
+    color: #34495e;
+    line-height: 1.6;
+    margin: 0 0 12px 0;
+}
+
+.text-card-info ul {
+    margin: 0;
+    padding-left: 20px;
+    font-size: 0.9rem;
+    color: #34495e;
+    line-height: 1.5;
+}
+
+/* COMPONENTE: CONTENEDOR DE VIDEO DE LA IA */
+.video-card-container {
+    background-color: #000000;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--sombra-dashboard);
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--plomo-borde);
+}
+
+.dashboard-video {
+    width: 100%;
+    max-height: 280px;
+    display: block;
+    object-fit: contain;
+}
+
+/* COMPONENTE: CONTENEDOR GENERAL DE EVALUACIÓN */
+.dashboard-evaluation-box {
+    background-color: var(--blanco-tarjeta);
+    border: 1px solid var(--plomo-borde);
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: var(--sombra-dashboard);
+    margin-top: 25px;
+}
+
+.dashboard-evaluation-box h3 {
+    margin: 0 0 20px 0;
+    font-size: 1.15rem;
+    color: var(--azul-colegio);
+    border-bottom: 2px solid var(--plomo-fondo);
+    padding-bottom: 8px;
+}
+
+/* TARJETA INDEPENDIENTE PARA CADA EJERCICIO */
+.new-exercise-card {
+    background-color: #fafbfc;
+    padding: 18px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border: 1px solid var(--plomo-borde);
+}
+
+.new-exercise-card label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #2c3e50;
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+/* ENTORNO DIGITAL ESTILO SPYDER */
+.text-area-codigo {
+    width: 100%;
+    height: 65px;
+    background-color: var(--spyder-dark);
+    color: #abb2bf;
+    font-family: "Consolas", "Courier New", monospace;
+    font-size: 0.9rem;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #111;
+    box-sizing: border-box;
+    resize: none;
+    margin-bottom: 12px;
+    transition: border-color 0.2s;
+}
+
+.text-area-codigo:focus {
+    outline: none;
+    border-color: var(--azul-colegio);
+}
+/* ETIQUETAS DE DIFICULTAD MATE */
+.tag-facil, .tag-medio, .tag-dificil, .tag-reto {
+    display: inline-block;
+    font-size: 0.68rem;
+    font-weight: bold;
+    padding: 3px 8px;
+    border-radius: 4px;
+    color: var(--blanco-tarjeta);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.tag-facil { background-color: var(--color-facil); }
+.tag-medio { background-color: var(--color-medio); }
+.tag-dificil { background-color: var(--color-dificil); }
+.tag-reto { background-color: var(--color-reto); }
+
+/* VISTA DE CÓDIGO CON ERRORES */
+.bug-code-view {
+    font-family: "Consolas", monospace;
+    background-color: #282a36;
+    color: #f8f8f2;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 0.82rem;
+    margin-bottom: 12px;
+    border-left: 4px solid #f1c40f;
+}
+
+/* BOTONES DE VERIFICACIÓN */
+.btn-verificar {
+    background-color: var(--azul-colegio);
+    color: var(--blanco-tarjeta);
+    border: none;
+    padding: 10px 18px;
+    font-size: 0.82rem;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.15s;
+}
+.btn-verificar:hover { background-color: var(--azul-oscuro); }
+
+/* PANELES DE RESPUESTA (FEEDBACK) */
+.feedback-box {
+    margin-top: 12px;
+    padding: 12px 15px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    display: none;
+    line-height: 1.5;
+}
+
+/* GLOSARIO DE COMANDOS FLOTANTE DEL MENÚ LATERAL */
+.glosario-flotante {
+    background-color: #fafbfc;
+    padding: 20px;
+    border-radius: 8px;
+    border: 2px dashed var(--azul-colegio);
+    margin-bottom: 25px;
+    box-shadow: var(--sombra-dashboard);
+}
+
+/* COMPONENTE: PIE DE PÁGINA */
+.main-footer {
+    background-color: var(--azul-colegio);
+    color: var(--blanco-tarjeta);
+    padding: 20px;
+    text-align: center;
+    font-size: 0.85rem;
+    margin-top: 30px;
+    border-top: 4px solid var(--plomo-oscuro);
+}
+.main-footer p { margin: 3px 0; }
+.credits { opacity: 0.7; font-size: 0.75rem; }
+
+/* VENTANA EMERGENTE PANEL DOCENTE (Ctrl + Shift + X) */
+.admin-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+.admin-modal-content {
+    background-color: var(--blanco-tarjeta);
+    width: 90%;
+    max-width: 650px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+}
+.modal-header-tech {
+    background-color: var(--azul-colegio);
+    color: var(--blanco-tarjeta);
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.modal-header-tech h3 { margin: 0; font-size: 1rem; }
+.close-modal-btn { font-size: 1.5rem; cursor: pointer; }
+.modal-body-tech { padding: 20px; }
+.table-scroll-container { max-height: 220px; overflow-y: auto; border: 1px solid var(--plomo-borde); border-radius: 6px; margin-bottom: 15px; }
+.report-table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.85rem; }
+.report-table th, .report-table td { padding: 10px 12px; border-bottom: 1px solid var(--plomo-fondo); }
+.report-table th { background-color: var(--plomo-fondo); }
+.status-badge { padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; color: var(--blanco-tarjeta); }
+.status-badge.badge-ok { background-color: #27ae60; }
+.status-badge.badge-err { background-color: #c0392b; }
+.modal-actions-tech { display: flex; justify-content: flex-end; gap: 10px; }
+.btn-tech-action { border: none; padding: 8px 16px; font-size: 0.8rem; font-weight: bold; border-radius: 4px; cursor: pointer; }
+.btn-tech-action.action-danger { background-color: #c0392b; color: var(--blanco-tarjeta); }
+.btn-tech-action.action-success { background-color: var(--azul-colegio); color: var(--blanco-tarjeta); }
+
+/* AJUSTES RESPONSIVOS EN PANTALLAS CHICAS */
+@media (max-width: 768px) {
+    .dashboard-container { flex-direction: column; height: auto; }
+    .sidebar-panel { width: 100%; height: auto; border-right: none; border-bottom: 4px solid var(--azul-colegio); }
+    .main-workspace { height: auto; overflow-y: visible; padding: 15px; }
+    .btn-verificar { width: 100%; text-align: center; }
+}

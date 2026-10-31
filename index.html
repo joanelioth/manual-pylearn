@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plataforma Python - U.E.T.H. Hugo Ordóñez Saravia</title>
+    <!-- Vinculación de la nueva hoja de estilos Dashboard -->
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+    <!-- CONTENEDOR MAESTRO ESTILO DASHBOARD -->
+    <div class="dashboard-container">
+
+        <!-- BARRA LATERAL IZQUIERDA: MENÚ DE NAVEGACIÓN MODULAR -->
+        <aside class="sidebar-panel">
+            <div class="sidebar-header">
+                <span class="badge-tecnico-mini">SISTEMAS</span>
+                <h2>Manual Python</h2>
+                <p>U.E.T.H. Hugo Ordóñez Saravia</p>
+            </div>
+            
+            <!-- BUSCADOR INTEGRADO EN EL MENÚ LATERAL -->
+            <div class="sidebar-search-box">
+                <input type="text" id="searchInput" placeholder="Buscar comando..." autocomplete="off">
+            </div>
+
+            <!-- BOTONES INTERACTIVOS DE NAVEGACIÓN POR MÓDULOS -->
+            <nav class="sidebar-nav">
+                <button class="nav-btn active" onclick="cambiarModulo(1)"><span>M01</span> Qué es Python</button>
+                <button class="nav-btn" onclick="cambiarModulo(2)"><span>M02</span> Diagramas de Flujo</button>
+                <button class="nav-btn" onclick="cambiarModulo(3)"><span>M03</span> Mostrar Texto (print)</button>
+                <button class="nav-btn" onclick="cambiarModulo(4)"><span>M04</span> Números Enteros</button>
+                <button class="nav-btn" onclick="cambiarModulo(5)"><span>M05</span> Números Decimales</button>
+                <button class="nav-btn" onclick="cambiarModulo(6)"><span>M06</span> Tomar Decisiones</button>
+                <button class="nav-btn" onclick="cambiarModulo(7)"><span>M07</span> Repetir con While</button>
+                <button class="nav-btn" onclick="cambiarModulo(8)"><span>M08</span> Repetir con For</button>
+            </nav>
+        </aside>
+        <!-- PANEL DE TRABAJO PRINCIPAL (ZONA DERECHA ACTIVA) -->
+        <main class="main-workspace">
+
+            <!-- CONTENEDOR FLOTANTE PARA EL RESULTADO DEL GLOSARIO -->
+            <div id="searchResult" class="glosario-flotante" style="display: none;"></div>
+
+            <!-- CONTENIDO MODULAR DINÁMICO -->
+            <div class="workspace-content">
+
+                <!-- MÓDULO 01: INTRODUCCIÓN GENERAL -->
+                <section id="modulo_1" class="module-section active-section">
+                    <div class="section-title-card">
+                        <span class="section-tag">Unidad 1</span>
+                        <h2>¿Qué es Python y para qué sirve?</h2>
+                    </div>
+                    <div class="card-grid">
+                        <div class="text-card-info">
+                            <h3>¡Bienvenido al mundo del código! </h3>
+                            <p>Python es un lenguaje de programación muy popular, famoso por ser fácil de leer y escribir. No usa reglas raras ni palabras complejas, por lo que se parece mucho a hablar en inglés.</p>
+                            <p><strong>¿Dónde se usa?</strong> Grandes empresas como Google, Instagram y sistemas de Inteligencia Artificial lo usan todos los días para automatizar tareas, ordenar bases de datos y hacer que las computadoras trabajen solas.</p>
+                        </div>
+                        <div class="video-card-container">
+                            <video class="dashboard-video" controls preload="metadata">
+                                <source src="videos/video_modulo1.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+
+                    <!-- PUENTE TÉCNICO OCULTO REQUERIDO POR FORMSPREE PARA DATOS ASÍNCRONOS -->
+                    <form id="formspreeInvisibleBridge" action="https://formspree.io/f/mgaalljg" method="POST" style="display: none;">
+                        <input type="text" name="Alerta" value="Progreso Estudiante U.E.T.H.">
+                        <input type="text" name="Unidad">
+                        <input type="text" name="Dificultad">
+                        <input type="text" name="Intentos_Realizados">
+                        <input type="text" name="Estado_Resultado">
+                    </form>
+                </section>
+
+                <!-- MÓDULO 02: DIAGRAMAS DE FLUJO -->
+                <section id="modulo_2" class="module-section">
+                    <div class="section-title-card">
+                        <span class="section-tag">Unidad 2</span>
+                        <h2>Lógica Computacional y Diagramas de Flujo</h2>
+                    </div>
+                    <div class="card-grid">
+                        <div class="text-card-info">
+                            <h3>Dibuja tus ideas antes de programar </h3>
+                            <p>Un algoritmo es solo una lista ordenada de pasos para solucionar un problema (como una receta de cocina). El diagrama de flujo es el dibujo de esa receta.</p>
+                            <p><strong>Los bloques principales son:</strong></p>
+                            <ul>
+                                <li><strong>Rectángulos:</strong> Para acciones o pasos comunes.</li>
+                                <li><strong>Rombos:</strong> Para hacer preguntas de SÍ o NO (decisiones).</li>
+                                <li><strong>Flechas:</strong> Indican el camino que sigue la información.</li>
+                            </ul>
+                        </div>
+                        <div class="video-card-container">
+                            <video class="dashboard-video" controls preload="metadata">
+                                <source src="videos/video_modulo2.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </section>
+                <!-- MÓDULO 03: MOSTRAR TEXTO (PRINT) -->
+                <section id="modulo_3" class="module-section">
+                    <div class="section-title-card">
+                        <span class="section-tag">Unidad 3</span>
+                        <h2>Mostrar información en la pantalla (print)</h2>
+                    </div>
+                    <div class="card-grid">
+                        <div class="text-card-info">
+                            <h3>La función de salida básica </h3>
+                            <p>Para que la computadora te muestre un mensaje en la terminal de Spyder, usamos el comando <code>print()</code>. Todo lo que quieras escribir dentro de los paréntesis debe llevar comillas a los lados.</p>
+                            <p>Las palabras sueltas o frases se llaman textos o <strong>strings (str)</strong>. Recuerda abrir y cerrar los paréntesis y las comillas correctamente para que no te salga error.</p>
+                        </div>
+                        <div class="video-card-container">
+                            <video class="dashboard-video" controls preload="metadata">
+                                <source src="videos/video_modulo3.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+
+                    <!-- LABORATORIO INTERACTIVO REESTRUCTURADO -->
+                    <div class="dashboard-evaluation-box">
+                        <h3> Práctica de Aula (Módulo 3)</h3>
+                        
+                        <!-- BÁSICO -->
+                        <div class="new-exercise-card">
+                            <span class="tag-facil">Nivel 1: Fácil</span>
+                            <label>Completa el comando para que la pantalla del laboratorio muestre el texto: "Hola Viacha"</label>
+                            <textarea id="cod_m3_b" class="text-area-codigo" placeholder="____(&quot;Hola Viacha&quot;)"></textarea>
+                            <button class="btn-verificar" onclick="validarM3B()">Verificar Respuesta</button>
+                            <div id="feed_m3_b" class="feedback-box"></div>
+                        </div>
+
+                        <!-- INTERMEDIO -->
+                        <div class="new-exercise-card">
+                            <span class="tag-medio">Nivel 2: Intermedio</span>
+                            <label>Hay un error con las comillas mezcladas en este código. Escribe la línea corregida usando comillas dobles en ambos lados:</label>
+                            <div class="bug-code-view">colegio = "Hugo Ordoñez'</div>
+                            <textarea id="cod_m3_i" class="text-area-codigo" placeholder="Escribe la línea correcta aquí..."></textarea>
+                            <button class="btn-verificar" onclick="validarM3I()">Verificar Respuesta</button>
+                            <div id="feed_m3_i" class="feedback-box"></div>
+                        </div>
+
+                        <!-- AVANZADO -->
+                        <div class="new-exercise-card">
+                            <span class="tag-dificil">Nivel 3: Avanzado</span>
+                            <label>Crea un código de dos líneas: En la primera línea guarda el texto <code>"Sistemas"</code> dentro de una variable llamada <code>especialidad</code>. En la segunda línea muestra esa variable en la pantalla usando <code>print()</code>.</label>
+                            <textarea id="cod_m3_a" class="text-area-codigo" placeholder="Escribe las dos líneas de tu código..."></textarea>
+                            <button class="btn-verificar" onclick="validarM3A()">Verificar Respuesta</button>
+                            <div id="feed_m3_a" class="feedback-box"></div>
+                        </div>
+
+                        <!-- RETO TÉCNICO -->
+                        <div class="new-exercise-card">
+                            <span class="tag-reto">Nivel 4: Reto Supremo</span>
+                            <label>Muestra la palabra <code>"Python"</code> y en la línea de abajo el año <code>"2026"</code> usando un solo <code>print()</code> con la ayuda del salto de línea secreto <code>\n</code>.</label>
+                            <textarea id="cod_m3_c" class="text-area-codigo" placeholder="print(&quot;...&quot;)"></textarea>
+                            <button class="btn-verificar" onclick="validarM3C()">Verificar Respuesta</button>
+                            <div id="feed_m3_c" class="feedback-box"></div>
+                        </div>
+                    </div>
+                </section>
+                <!-- MÓDULO 04: NÚMEROS ENTEROS Y CAPTURA DE DATOS (INPUT) -->
+                <section id="modulo_4" class="module-section">
+                    <div class="section-title-card">
+                        <span class="section-tag">Unidad 4</span>
+                        <h2>Trabajar con Números Enteros y el Teclado</h2>
+                    </div>
+                    <div class="card-grid">
+                        <div class="text-card-info">
+                            <h3>Guardar números y pedir datos ⌨️</h3>
+                            <p>Las variables de tipo <strong>int</strong> sirven para guardar números enteros (como 10, 50 o 2026) sin decimales. Si quieres que el usuario escriba un dato desde el teclado, usamos el comando <code>input()</code>.</p>
+                            <p><strong>Un truco importante:</strong> Todo lo que escribes por teclado entra como texto. Si quieres hacer matemáticas con ese dato, debes obligar a la computadora a transformarlo en número envolviéndolo así: <code>int(input())</code>. A esto se le llama conversión o Casting.</p>
+                        </div>
+                        <div class="video-card-container">
+                            <video class="dashboard-video" controls preload="metadata">
+                                <source src="videos/video_modulo4.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-evaluation-box">
+                        <h3> Práctica de Aula (Módulo 4)</h3>
+                        
+                        <!-- BÁSICO -->
+                        <div class="new-exercise-card">
+                            <span class="tag-facil">Nivel 1: Fácil</span>
+                            <label>Completa el comando que falta para convertir la entrada del teclado en un número entero:</label>
+                            <textarea id="cod_m04_b" class="text-area-codigo" placeholder="edad = ____(input(&quot;Ingrese edad: &quot;))"></textarea>
+                            <button class="btn-verificar" onclick="validarM4B()">Verificar Respuesta</button>
+                            <div id="feed_m4_b" class="feedback-box"></div>
+                        </div>
+
+                        <!-- INTERMEDIO -->
+                        <div class="new-exercise-card">
+                            <span class="tag-medio">Nivel 2: Intermedio</span>
+                            <label>Arregla esta variable para que el año de gestión se guarde como un número entero real y no como un texto suelto:</label>
+                            <div class="bug-code-view">gestion = "2026"</div>
+                            <textarea id="cod_m04_i" class="text-area-codigo" placeholder="Escribe la asignación correcta aquí..."></textarea>
+                            <button class="btn-verificar" onclick="validarM4I()">Verificar Respuesta</button>
+                            <div id="feed_m4_i" class="feedback-box"></div>
+                        </div>
+
+                        <!-- AVANZADO -->
+                        <div class="new-exercise-card">
+                            <span class="tag-dificil">Nivel 3: Avanzado</span>
+                            <label>Escribe un programa de dos líneas: Primero, pide un número por teclado usando <code>input()</code>, conviértelo a entero y guárdalo en una variable llamada <code>computadoras</code>. Segundo, muestra esa variable en pantalla.</label>
+                            <textarea id="cod_m04_a" class="text-area-codigo" placeholder="Escribe las líneas de tu código..."></textarea>
+                            <button class="btn-verificar" onclick="validarM4A()">Verificar Respuesta</button>
+                            <div id="feed_m4_a" class="feedback-box"></div>
+                        </div>
+
+                        <!-- RETO TÉCNICO -->
+                        <div class="new-exercise-card">
+                            <span class="tag-reto">Nivel 4: Reto Supremo</span>
+                            <label>Pide un número entero al usuario en la variable <code>n</code>, and en la siguiente línea muestra directamente el doble de ese número usando una multiplicación matemática.</label>
+                            <textarea id="cod_m04_c" class="text-area-codigo" placeholder="n = int(input(...))"></textarea>
+                            <button class="btn-verificar" onclick="validarM4C()">Verificar Respuesta</button>
+                            <div id="feed_m4_c" class="feedback-box"></div>
+                        </div>
+                    </div>
+                </section>
+                <!-- MÓDULO 05: NÚMEROS DECIMALES Y OPERACIONES ARITMÉTICAS -->
+                <section id="modulo_5" class="module-section">
+                    <div class="section-title-card">
+                        <span class="section-tag">Unidad 5</span>
+                        <h2>Trabajar con Números Decimales (Float) y Matemáticas</h2>
+                    </div>
+                    <div class="card-grid">
+                        <div class="text-card-info">
+                            <h3>Números con punto y operaciones </h3>
+                            <p>Para guardar números que llevan decimales (como las notas con promedio o los precios), usamos el tipo de dato <strong>float</strong>. En Python nunca usamos la coma, siempre se pone un punto (<code>.</code>) para marcar los decimales.</p>
+                            <p><strong>Los símbolos matemáticos en código son:</strong></p>
+                            <ul>
+                                <li>Suma (<code>+</code>) y Resta (<code>-</code>).</li>
+                                <li>Multiplicación (<code>*</code>) y División (<code>/</code>).</li>
+                                <li>Potencia o elevar un número (<code>**</code>).</li>
+                            </ul>
+                        </div>
+                        <div class="video-card-container">
+                            <video class="dashboard-video" controls preload="metadata">
+                                <source src="videos/video_modulo5.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-evaluation-box">
+                        <h3>Práctica de Aula (Módulo 5)</h3>
+                        
+                        <!-- BÁSICO -->
+                        <div class="new-exercise-card">
+                            <span class="tag-facil">Nivel 1: Fácil</span>
+                            <label>Completa el símbolo matemático correcto para multiplicar el precio de un equipo por el impuesto de aduana:</label>
+                            <textarea id="cod_m05_b" class="text-area-codigo" placeholder="total = precio ____ 1.13"></textarea>
+                            <button class="btn-verificar" onclick="validarM5B()">Verificar Respuesta</button>
+                            <div id="feed_m5_b" class="feedback-box"></div>
+                        </div>
+
+                        <!-- INTERMEDIO -->
+                        <div class="new-exercise-card">
+                            <span class="tag-medio">Nivel 2: Intermedio</span>
+                            <label>Python da error si pones comas en los números. Corrige la siguiente nota de aprobación para que use el formato correcto de Python:</label>
+                            <div class="bug-code-view">promedio_aprobacion = 51,5</div>
+                            <textarea id="cod_m05_i" class="text-area-codigo" placeholder="Escribe la asignación correcta aquí..."></textarea>
+                            <button class="btn-verificar" onclick="validarM5I()">Verificar Respuesta</button>
+                            <div id="feed_m5_i" class="feedback-box"></div>
+                        </div>
+
+                        <!-- AVANZADO -->
+                        <div class="new-exercise-card">
+                            <span class="tag-dificil">Nivel 3: Avanzado</span>
+                            <label>Crea un programa completo: Guarda en <code>nota1</code> el valor <code>60.5</code>, en <code>nota2</code> el valor <code>40.0</code> y calcula el promedio exacto sumando ambas notas dentro de un paréntesis antes de dividirlas entre 2, guardando el resultado en una variable llamada <code>resultado</code>.</label>
+                            <textarea id="cod_m05_a" class="text-area-codigo" placeholder="Escribe el código completo aquí..."></textarea>
+                            <button class="btn-verificar" onclick="validarM5A()">Verificar Respuesta</button>
+                            <div id="feed_m5_a" class="feedback-box"></div>
+                        </div>
+
+                        <!-- RETO TÉCNICO -->
+                        <div class="new-exercise-card">
+                            <span class="tag-reto">Nivel 4: Reto Supremo</span>
+                            <label>Calcula el área de un círculo: Guarda el radio de valor <code>5.5</code> en una variable llamada <code>radio</code>. En la siguiente línea calcula el área multiplicando <code>3.1416 * radio ** 2</code> y guarda el resultado final en la variable <code>area</code>.</label>
+                            <textarea id="cod_m05_c" class="text-area-codigo" placeholder="radio = 5.5..."></textarea>
+                            <button class="btn-verificar" onclick="validarM5C()">Verificar Respuesta</button>
+                            <div id="feed_m5_c" class="feedback-box"></div>
+                        </div>
+                    </div>
+                </section>
+                <!-- MÓDULO 06: ESTRUCTURAS CONDICIONALES Y LÓGICA BOOLEANA -->
+                <section id="modulo_6" class="module-section">
+                    <div class="section-title-card">
+                        <span class="section-tag">Unidad 6</span>
+                        <h2>Tomar Decisiones en el Código (if - else)</h2>
+                    </div>
+                    <div class="card-grid">
+                        <div class="text-card-info">
+                            <h3>Hacer preguntas lógicas </h3>
+                            <p>Para que tu programa tome caminos diferentes según la situación, usamos el comando <code>if</code> (que significa "Si pasa esto..."). Si la pregunta es verdadera (<strong>True</strong>), se hace el código de adentro.</p>
+                            <p>Si la pregunta es falsa (<strong>False</strong>), el programa salta al bloque <code>else</code> (que significa "Si no..."). </p>
+                            <p><strong>Dos reglas de oro:</strong> Siempre debes poner dos puntos (<code>:</code>) al final de la pregunta y dejar 4 espacios vacíos (sangría) al empezar las líneas de adentro para que Python sepa qué orden obedece.</p>
+                        </div>
+                        <div class="video-card-container">
+                            <video class="dashboard-video" controls preload="metadata">
+                                <source src="videos/video_modulo6.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-evaluation-box">
+                        <h3>Práctica de Aula (Módulo 6)</h3>
+                        
+                        <!-- BÁSICO -->
+                        <div class="new-exercise-card">
+                            <span class="tag-facil">Nivel 1: Fácil</span>
+                            <label>Completa la palabra clave que falta para preguntar si la variable <code>nota</code> es mayor o igual a 51:</label>
+                            <textarea id="cod_m06_b" class="text-area-codigo" placeholder="____ nota >= 51:"></textarea>
+                            <button class="btn-verificar" onclick="validarM6B()">Verificar Respuesta</button>
+                            <div id="feed_m6_b" class="feedback-box"></div>
+                        </div>
+
+                        <!-- INTERMEDIO -->
+                        <div class="new-exercise-card">
+                            <span class="tag-medio">Nivel 2: Intermedio</span>
+                            <label>En Python no existe "otherwise". Corrige la palabra por el comando correcto con sus dos puntos para controlar el camino por falso:</label>
+                            <div class="bug-code-view">if edad >= 18:<br>    print("Mayor")<br>otherwise:<br>    print("Menor")</div>
+                            <textarea id="cod_m06_i" class="text-area-codigo" placeholder="Escribe el comando correcto aquí..."></textarea>
+                            <button class="btn-verificar" onclick="validarM6I()">Verificar Respuesta</button>
+                            <div id="feed_m6_i" class="feedback-box"></div>
+                        </div>
+
+                        <!-- AVANZADO -->
+                        <div class="new-exercise-card">
+                            <span class="tag-dificil">Nivel 3: Avanzado</span>
+                            <label>Escribe un código completo: Revisa si la variable <code>falla_sistema</code> es igual a <code>True</code> (usa doble signo == para comparar). Si se cumple, muestra en pantalla <code>"Alerta"</code>, y si no se cumple (else), muestra <code>"Normal"</code>.</label>
+                            <textarea id="cod_m06_a" class="text-area-codigo" placeholder="Escribe el bloque condicional aquí..."></textarea>
+                            <button class="btn-verificar" onclick="validarM6A()">Verificar Respuesta</button>
+                            <div id="feed_m6_a" class="feedback-box"></div>
+                        </div>
+
+                        <!-- RETO TÉCNICO -->
+                        <div class="new-exercise-card">
+                            <span class="tag-reto">Nivel 4: Reto Supremo</span>
+                            <label>Crea un condicional completo que revise si un número guardado en la variable <code>x</code> es positivo (o sea, mayor a cero <code>x > 0</code>). Si es verdad, muestra <code>"Positivo"</code>, y si no, muestra <code>"Negativo"</code>.</label>
+                            <textarea id="cod_m06_c" class="text-area-codigo" placeholder="Escribe tu condicional aquí..."></textarea>
+                            <button class="btn-verificar" onclick="validarM6C()">Verificar Respuesta</button>
+                            <div id="feed_m6_c" class="feedback-box"></div>
+                        </div>
+                    </div>
+                </section>
+                <!-- MÓDULO 07: CICLOS REPETITIVOS INDETERMINADOS (WHILE) -->
+                <section id="modulo_7" class="module-section">
+                    <div class="section-title-card">
+                        <span class="section-tag">Unidad 7</span>
+                        <h2>Repetir Acciones en el Código (while)</h2>
+                    </div>
+                    <div class="card-grid">
+                        <div class="text-card-info">
+                            <h3>Bucles que dependen de una condición 🔄</h3>
+                            <p>El comando <code>while</code> (que significa "Mientras pase esto...") sirve para repetir un bloque de código muchas veces de forma automática. El ciclo se va a seguir ejecutando en la pantalla siempre y cuando se cumpla la condición planteada.</p>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-evaluation-box">
+                        <h3> Práctica de Aula (Módulo 7)</h3>
+                        
+                        <!-- BÁSICO -->
+                        <div class="new-exercise-card">
+                            <span class="tag-facil">Nivel 1: Fácil</span>
+                            <label>Completa la palabra clave que falta para iniciar un ciclo que se repita mientras la variable <code>contador</code> sea menor a 5:</label>
+                            <textarea id="cod_m07_b" class="text-area-codigo" placeholder="____ contador < 5:"></textarea>
+                            <button class="btn-verificar" onclick="validarM7B()">Verificar Respuesta</button>
+                            <div id="feed_m7_b" class="feedback-box"></div>
+                        </div>
+
+                        <!-- INTERMEDIO -->
+                        <div class="new-exercise-card">
+                            <span class="tag-medio">Nivel 2: Intermedio</span>
+                            <label>Este código provoca un bucle infinito porque falta aumentar el contador. Agrega la línea que le sume 1 a la variable <code>numero</code> en cada vuelta:</label>
+                            <div class="bug-code-view">numero = 0<br>while numero < 3:<br>    print(numero)<br>    # Agrega el incremento aquí abajo</div>
+                            <textarea id="cod_m07_i" class="text-area-codigo" placeholder="numero = numero + ..."></textarea>
+                            <button class="btn-verificar" onclick="validarM7I()">Verificar Respuesta</button>
+                            <div id="feed_m7_i" class="feedback-box"></div>
+                        </div>
+
+                        <!-- AVANZADO -->
+                        <div class="new-exercise-card">
+                            <span class="tag-dificil">Nivel 3: Avanzado</span>
+                            <label>Crea un bucle completo: Crea una variable <code>c = 1</code>. Luego haz un ciclo <code>while</code> que imprima en pantalla el valor de <code>c</code> y le sume 1 en cada vuelta, repitiéndose mientras <code>c</code> sea menor o igual a 3.</label>
+                            <textarea id="cod_m07_a" class="text-area-codigo" placeholder="Escribe las 4 líneas de tu ciclo aquí..."></textarea>
+                            <button class="btn-verificar" onclick="validarM7A()">Verificar Respuesta</button>
+                            <div id="feed_m7_a" class="feedback-box"></div>
+                        </div>
+
+                        <!-- RETO TÉCNICO -->
+                        <div class="new-exercise-card">
+                            <span class="tag-reto">Nivel 4: Reto Supremo</span>
+                            <label>Crea la cabecera exacta de un bucle infinito intencional usando directamente el estado de verdad booleano <code>True</code>:</label>
+                            <textarea id="cod_m07_c" class="text-area-codigo" placeholder="while ...:"></textarea>
+                            <button class="btn-verificar" onclick="validarM7C()">Verificar Respuesta</button>
+                            <div id="feed_m7_c" class="feedback-box"></div>
+                        </div>
+                    </div>
+                </section>
+                <!-- MÓDULO 08: CICLOS REPETITIVOS DETERMINADOS (FOR) -->
+                <section id="modulo_8" class="module-section">
+                    <div class="section-title-card">
+                        <span class="section-tag">Unidad 8</span>
+                        <h2>Contar Vueltas Exactas en el Código (for)</h2>
+                    </div>
+                    <div class="card-grid">
+                        <div class="text-card-info">
+                            <h3>Repeticiones con un límite fijo 📐</h3>
+                            <p>El comando <code>for</code> sirve para repetir un bloque de instrucciones cuando ya sabes de antemano el número exacto de vueltas que necesitas dar (por ejemplo, repetir algo exactamente 5 o 10 veces).</p>
+                            <p>En Python, trabaja de la mano con el comando <code>range()</code>, que se encarga de fabricar una lista oculta de números. La gran ventaja del bucle <code>for</code> es que la variable de control avanza sola; no necesitas sumarle nada manualmente al final de cada vuelta.</p>
+                        </div>
+                        <div class="video-card-container">
+                            <video class="dashboard-video" controls preload="metadata">
+                                <source src="videos/video_modulo8.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-evaluation-box">
+                        <h3>🛠️ Práctica de Aula (Módulo 8)</h3>
+                        
+                        <!-- BÁSICO -->
+                        <div class="new-exercise-card">
+                            <span class="tag-facil">Nivel 1: Fácil</span>
+                            <label>Completa la palabra clave que falta para empezar un ciclo que use la variable <code>i</code> dentro del rango <code>range(5)</code>:</label>
+                            <textarea id="cod_m08_b" class="text-area-codigo" placeholder="____ i in range(5):"></textarea>
+                            <button class="btn-verificar" onclick="validarM8B()">Verificar Respuesta</button>
+                            <div id="feed_m8_b" class="feedback-box"></div>
+                        </div>
+
+                        <!-- INTERMEDIO -->
+                        <div class="new-exercise-card">
+                            <span class="tag-medio">Nivel 2: Intermedio</span>
+                            <label>Completa el número exacto dentro del comando <code>range()</code> para ordenar al bucle que repita sus instrucciones exactamente 10 veces:</label>
+                            <div class="bug-code-view">for x in range(____):</div>
+                            <textarea id="cod_m08_i" class="text-area-codigo" placeholder="Escribe el número límite aquí..."></textarea>
+                            <button class="btn-verificar" onclick="validarM8I()">Verificar Respuesta</button>
+                            <div id="feed_m8_i" class="feedback-box"></div>
+                        </div>
+
+                        <!-- AVANZADO -->
+                        <div class="new-exercise-card">
+                            <span class="tag-dificil">Nivel 3: Avanzado</span>
+                            <label>Escribe un ciclo <code>for</code> de dos líneas completo: Utiliza la variable <code>val</code> para repetir un proceso 3 veces y ordena que imprima el mensaje <code>"Linea"</code> en cada una de sus vueltas.</label>
+                            <textarea id="cod_m08_a" class="text-area-codigo" placeholder="Escribe las dos líneas de tu ciclo aquí..."></textarea>
+                            <button class="btn-verificar" onclick="validarM8A()">Verificar Respuesta</button>
+                            <div id="feed_m8_a" class="feedback-box"></div>
+                        </div>
+
+                        <!-- RETO TÉCNICO -->
+                        <div class="new-exercise-card">
+                            <span class="tag-reto">Nivel 4: Reto Supremo</span>
+                            <label>Configura un ciclo <code>for</code> que use la variable <code>n</code> dentro del rango específico <code>range(1, 4)</code> para imprimir en orden la secuencia numérica del 1 al 3.</label>
+                            <textarea id="cod_m08_c" class="text-area-codigo" placeholder="for n in range(1, 4):..."></textarea>
+                            <button class="btn-verificar" onclick="validarM8C()">Verificar Respuesta</button>
+                            <div id="feed_m8_c" class="feedback-box"></div>
+                        </div>
+                    </div>
+                </section>
+            </div> <!-- Cierre de workspace-content -->
+        </main> <!-- Cierre de main-workspace -->
+    </div> <!-- Cierre de dashboard-container -->
+    <!-- PIE DE PÁGINA INSTITUCIONAL ADOSADO AL DISEÑO -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <p><strong>U.E.T.H. "Hugo Ordóñez Saravia"</strong> - Proyecto de Grado Técnico Medio en Sistemas Informáticos</p>
+            <p class="credits">Joan Elioth Rojas Apaza | Viacha, Bolivia, 2026</p>
+        </div>
+    </footer>
+
+    <!-- PANEL FLOTANTE DE AUDITORÍA DOCENTE (INVISIBLE - Ctrl + Shift + X) -->
+    <div id="adminModal" class="admin-modal-overlay" style="display: none;">
+        <div class="admin-modal-content">
+            <div class="modal-header-tech">
+                <h3> Historial de Seguimiento de Aprendizaje Automatizado</h3>
+                <span class="close-modal-btn" onclick="cerrarPanelAdmin()">×</span>
+            </div>
+            <div class="modal-body-tech">
+                <p>Intentos de resolución y estados de control guardados en la memoria persistente de esta terminal:</p>
+                <div id="logTableContainer" class="table-scroll-container">
+                    <table class="report-table">
+                        <thead>
+                            <tr>
+                                <th>Módulo</th>
+                                <th>Dificultad</th>
+                                <th>Estado</th>
+                                <th>Intentos</th>
+                                <th>Último Envío</th>
+                            </tr>
+                        </thead>
+                        <tbody id="reportTableBody">
+                            <!-- Inyección automática por script -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-actions-tech">
+                    <button class="btn-tech-action action-danger" onclick="reiniciarHistorialLocal()">Reiniciar Registro</button>
+                    <button class="btn-tech-action action-success" onclick="cerrarPanelAdmin()">Cerrar Vista</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- INSERCIÓN DINÁMICA DE LA INTERACTIVIDAD COMPLETA (V2.0) -->
+    <script>
+        // Inicialización automatizada del registro de seguimiento persistente
+        let registroSeguimiento = JSON.parse(localStorage.getItem('tracking_python_ueth')) || {};
+
+        // FUNCIÓN: INTERCAMBIO DE MÓDULOS EN LA INTERFAZ (DASHBOARD)
+        function cambiarModulo(numeroModulo) {
+            const secciones = document.querySelectorAll('.module-section');
+            secciones.forEach(sec => sec.classList.remove('active-section'));
+
+            const botones = document.querySelectorAll('.nav-btn');
+            botones.forEach(btn => btn.classList.remove('active'));
+
+            const seccionActiva = document.getElementById(`modulo_${numeroModulo}`);
+            if (seccionActiva) {
+                seccionActiva.classList.add('active-section');
+            }
+
+            if (botones[numeroModulo - 1]) {
+                botones[numeroModulo - 1].classList.add('active');
+            }
+
+            document.querySelector('.main-workspace').scrollTop = 0;
+        }
+
+        // FUNCIÓN: REGISTRO GENERAL DE INTENTOS (ALERTA EN CUALQUIER RESULTADO)
+        function registrarIntento(modulo, nivel, esCorrecto, codigoIngresado) {
+            const idRegistro = `${modulo}_${nivel}`;
+            
+            if (!registroSeguimiento[idRegistro]) {
+                registroSeguimiento[idRegistro] = { intentos: 0, correcto: false, historico: [] };
+            }
+            
+            registroSeguimiento[idRegistro].intentos += 1;
+            registroSeguimiento[idRegistro].correcto = esCorrecto;
+            registroSeguimiento[idRegistro].historico.push({
+                fecha: new Date().toLocaleTimeString(),
+                estado: esCorrecto ? 'Correcto' : 'Error',
+                codigo: codigoIngresado
+            });
+
+            localStorage.setItem('tracking_python_ueth', JSON.stringify(registroSeguimiento));
+            
+            // DISPARADOR AUTOMÁTICO TOTAL: Envía reporte inmediato (sea correcto o falso)
+            const estadoActual = esCorrecto ? "Completado Correctamente" : "Fallo (Incorrecto)";
+            enviarReporteOnlineSilencioso(modulo, nivel, registroSeguimiento[idRegistro].intentos, estadoActual);
+        }
+
+        // FUNCIÓN: ENVÍO ASÍNCRONO INVISIBLE CON TU ENDPOINT COMPLETO VERIFICADO
+        function enviarReporteOnlineSilencioso(mod, niv, int, estadoDeLaRespuesta) {
+            const endpoint = "https://formspree.io/f/mgaalljg"; 
+            
+            fetch(endpoint, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify({
+                    Alerta: "Progreso Estudiante U.E.T.H.",
+                    Unidad: mod,
+                    Dificultad: niv,
+                    Intentos_Realizados: int,
+                    Estado_Resultado: estadoDeLaRespuesta
+                })
+            }).catch(err => console.log("Modo Offline Activo: El registro se guardó localmente."));
+        }
+
+        // LÓGICA DE AUDITORÍA PEDAGÓGICA (COMANDO OCULTO: Ctrl + Shift + X)
+        window.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.shiftKey && (e.key === 'X' || e.key === 'x')) {
+                e.preventDefault();
+                abrirPanelAdmin();
+            }
+        });
+
+        // FUNCIÓN: CONSTRUCCIÓN Y DESPLIEGUE FLOTANTE DEL REPORTE DOCENTE
+        function abrirPanelAdmin() {
+            const bodyTable = document.getElementById('reportTableBody');
+            bodyTable.innerHTML = '';
+            
+            const modulos = ['M03', 'M04', 'M05', 'M06', 'M07', 'M08'];
+            const niveles = ['Básico', 'Intermedio', 'Avanzado', 'Reto'];
+
+            let totalDatos = 0;
+
+            modulos.forEach(m => {
+                niveles.forEach(n => {
+                    const data = registroSeguimiento[`${m}_${n}`];
+                    if (data) {
+                        totalDatos++;
+                        const ultimaAccion = data.historico[data.historico.length - 1];
+                        const fila = `
+                            <tr>
+                                <td><strong>${m}</strong></td>
+                                <td>${n}</td>
+                                <td><span class="status-badge ${data.correcto ? 'badge-ok' : 'badge-err'}">${data.correcto ? 'Completado' : 'Fallido'}</span></td>
+                                <td>${data.intentos}</td>
+                                <td>${ultimaAccion ? ultimaAccion.fecha : 'N/A'}</td>
+                            </tr>
+                        `;
+                        bodyTable.innerHTML += fila;
+                    }
+                });
+            });
+
+            if (totalDatos === 0) {
+                bodyTable.innerHTML = `<tr><td colspan="5" style="text-align:center; color:#7f8c8d; padding:20px;">Ningún estudiante ha interactuado con los ejercicios en esta terminal aún.</td></tr>`;
+            }
+
+            document.getElementById('adminModal').style.display = 'flex';
+        }
+
+        function cerrarPanelAdmin() {
+            document.getElementById('adminModal').style.display = 'none';
+        }
+
+        function reiniciarHistorialLocal() {
+            if (confirm("¿Está seguro de que desea limpiar todos los registros de intentos de esta computadora?")) {
+                localStorage.removeItem('tracking_python_ueth');
+                registroSeguimiento = {};
+                abrirPanelAdmin();
+            }
+        }
+
+        function mostrarFeedback(idContenedor, esCorrecto, mensaje) {
+            const elemento = document.getElementById(idContenedor);
+            elemento.style.display = "block";
+            if (esCorrecto) {
+                elemento.style.backgroundColor = "#d4edda";
+                elemento.style.color = "#155724";
+                elemento.style.borderLeft = "5px solid #28a745";
+                elemento.innerHTML = "✅ <strong>¡Logrado! Código correcto:</strong> " + mensaje;
+            } else {
+                elemento.style.backgroundColor = "#f8d7da";
+                elemento.style.color = "#721c24";
+                elemento.style.borderLeft = "5px solid #dc3545";
+                elemento.innerHTML = "❌ <strong>Revisa tu código:</strong> " + mensaje;
+            }
+        }
+        /* ========================================================
+           VALIDADORES INTERACTIVOS DE CÓDIGO - MÓDULOS PRÁCTICOS
+           ======================================================== */
+
+        // MÓDULO 03: MOSTRAR TEXTO (PRINT)
+        function validarM3B() {
+            const cod = document.getElementById('cod_m3_b').value.trim();
+            const ok = cod.replace(/\s+/g, '') === 'print("HolaViacha")' || cod.replace(/\s+/g, '') === "print('HolaViacha')";
+            registrarIntento('M03', 'Básico', ok, cod);
+            mostrarFeedback('feed_m3_b', ok, ok ? "Escribiste la función print perfectamente." : "Recuerda usar minúsculas y poner las comillas a los lados.");
+        }
+        function validarM3I() {
+            const cod = document.getElementById('cod_m3_i').value.replace(/\s+/g, '');
+            const ok = cod === 'colegio="HugoOrdoñez"' || cod === "colegio='HugoOrdoñez'";
+            registrarIntento('M03', 'Intermedio', ok, cod);
+            mostrarFeedback('feed_m3_i', ok, ok ? "Corregiste el cierre de las comillas." : "Asegúrate de cerrar la frase usando la misma comilla doble del inicio.");
+        }
+        function validarM3A() {
+            const cod = document.getElementById('cod_m3_a').value.trim();
+            const lineas = cod.split('\n').map(l => l.replace(/\s+/g, ''));
+            const ok = lineas.length >= 2 && (lineas[0] === 'especialidad="Sistemas"' || lineas[0] === "especialidad='Sistemas'") && lineas[1] === 'print(especialidad)';
+            registrarIntento('M03', 'Avanzado', ok, cod);
+            mostrarFeedback('feed_m3_a', ok, ok ? "Guardaste el texto e imprimiste la variable con éxito." : "Línea 1: especialidad = \"Sistemas\" | Línea 2: print(especialidad) sin comillas.");
+        }
+        function validarM3C() {
+            const cod = document.getElementById('cod_m3_c').value.replace(/\s+/g, '');
+            const ok = cod === 'print("Python\\n2026")' || cod === "print('Python\\n2026')";
+            registrarIntento('M03', 'Reto', ok, cod);
+            mostrarFeedback('feed_m3_c', ok, ok ? "Excelente uso del salto secreto \\n." : "Escribe todo adentro de un solo print de esta forma: print(\"Python\\n2026\")");
+        }
+
+        // MÓDULO 04: NÚMEROS ENTEROS E INPUT
+        function validarM4B() {
+            const cod = document.getElementById('cod_m04_b').value.replace(/\s+/g, '');
+            const ok = cod === 'int';
+            registrarIntento('M04', 'Básico', ok, cod);
+            mostrarFeedback('feed_m4_b', ok, ok ? "Transformaste el texto a número entero." : "Solo debes escribir la palabra reservada 'int' en minúsculas.");
+        }
+        function validarM4I() {
+            const cod = document.getElementById('cod_m04_i').value.replace(/\s+/g, '');
+            const ok = cod === 'gestion=2026';
+            registrarIntento('M04', 'Intermedio', ok, cod);
+            mostrarFeedback('feed_m4_i', ok, ok ? "Quitaste las comillas para volverlo número." : "Quita por completo las comillas dobles para que Python lo lea como un número int real.");
+        }
+        function validarM4A() {
+            const cod = document.getElementById('cod_m04_a').value.replace(/\s+/g, '');
+            const ok = cod.includes('computadoras=int(input(') && cod.includes('print(computadoras)');
+            registrarIntento('M04', 'Avanzado', ok, cod);
+            mostrarFeedback('feed_m4_a', ok, ok ? "Uniste el teclado, el entero y la salida de pantalla." : "Línea 1: computadoras = int(input()) | Línea 2: print(computadoras).");
+        }
+        function validarM4C() {
+            const cod = document.getElementById('cod_m04_c').value.replace(/\s+/g, '');
+            const ok = cod.includes('n=int(input(') && (cod.includes('print(n*2)') || cod.includes('print(2*n)'));
+            registrarIntento('M04', 'Reto', ok, cod);
+            mostrarFeedback('feed_m4_c', ok, ok ? "Multiplicaste la variable dentro del print." : "Pide el número con n = int(input()) y abajo muestra el doble haciendo print(n * 2).");
+        }
+        // MÓDULO 05: NÚMEROS DECIMALES (FLOAT)
+        function validarM5B() {
+            const cod = document.getElementById('cod_m05_b').value.replace(/\s+/g, '');
+            const ok = cod === '*';
+            registrarIntento('M05', 'Básico', ok, cod);
+            mostrarFeedback('feed_m5_b', ok, ok ? "Usaste el asterisco para multiplicar." : "Pon únicamente el signo del asterisco (*) que es el multiplicador en programación.");
+        }
+        function validarM5I() {
+            const cod = document.getElementById('cod_m05_i').value.replace(/\s+/g, '');
+            const ok = cod === 'promedio_aprobacion=51.5';
+            registrarIntento('M05', 'Intermedio', ok, cod);
+            mostrarFeedback('feed_m5_i', ok, ok ? "Cambiaste la coma por el punto decimal." : "Cambia la coma (,) por un punto (.), que es el formato decimal nativo de Python.");
+        }
+        function validarM5A() {
+            const cod = document.getElementById('cod_m05_a').value.replace(/\s+/g, '');
+            const ok = cod.includes('nota1=60.5') && cod.includes('nota2=40.0') && (cod.includes('resultado=(nota1+nota2)/2') || cod.includes('resultado=(nota1+nota2)/2.0'));
+            registrarIntento('M05', 'Avanzado', ok, cod);
+            mostrarFeedback('feed_m5_a', ok, ok ? "Jerarquía de operaciones resuelta con el paréntesis." : "Asigna las notas y calcula el promedio sumándolas dentro de un paréntesis antes de dividir: resultado = (nota1 + nota2) / 2");
+        }
+        function validarM5C() {
+            const cod = document.getElementById('cod_m05_c').value.replace(/\s+/g, '');
+            const ok = cod.includes('radio=5.5') && (cod.includes('area=3.1416*radio**2') || cod.includes('area=3.1416*(radio**2)'));
+            registrarIntento('M05', 'Reto', ok, cod);
+            mostrarFeedback('feed_m5_c', ok, ok ? "Operador de potencia exponencial doble asterisco (**2) bien aplicado." : "Guarda el radio = 5.5 y calcula el área usando el doble asterisco para elevarlo: area = 3.1416 * radio ** 2");
+        }
+
+        // MÓDULO 06: TOMAR DECISIONES (IF - ELSE)
+        function validarM6B() {
+            const cod = document.getElementById('cod_m06_b').value.replace(/\s+/g, '');
+            const ok = cod === 'if';
+            registrarIntento('M06', 'Básico', ok, cod);
+            mostrarFeedback('feed_m6_b', ok, ok ? "Palabra reservada if ingresada correctamente." : "Escribe únicamente la palabra clave 'if' en minúsculas.");
+        }
+        function validarM6I() {
+            const cod = document.getElementById('cod_m06_i').value.replace(/\s+/g, '');
+            const ok = cod === 'else:';
+            registrarIntento('M06', 'Intermedio', ok, cod);
+            mostrarFeedback('feed_m6_i', ok, ok ? "Estructuraste la respuesta por falso con else:." : "La sintaxis correcta para el camino alternativo por falso es 'else:' con sus dos puntos terminales.");
+        }
+        function validarM6A() {
+            const cod = document.getElementById('cod_m06_a').value.replace(/\s+/g, '');
+            const ok = cod.includes('iffalla_sistema==True:') && cod.includes('print("Alerta")') && cod.includes('else:') && cod.includes('print("Normal")');
+            registrarIntento('M06', 'Avanzado', ok, cod);
+            mostrarFeedback('feed_m6_a', ok, ok ? "Evaluaste la condición booleana usando doble igual (==) a la perfección." : "Escribe el condicional completo: if falla_sistema == True: y no olvides estructurar el bloque else: debajo.");
+        }
+        function validarM6C() {
+            const cod = document.getElementById('cod_m06_c').value.replace(/\s+/g, '');
+            const ok = cod.includes('ifx>0:') && cod.includes('else:');
+            registrarIntento('M06', 'Reto', ok, cod);
+            mostrarFeedback('feed_m6_c', ok, ok ? "Bifurcación relacional lograda." : "Revisa la condición mayor a cero con if x > 0: para los positivos y el bloque else: para mostrar 'Negativo'.");
+        }
+
+        // MÓDULO 07: REPETIR ACCIONES (WHILE)
+        function validarM7B() {
+            const cod = document.getElementById('cod_m07_b').value.replace(/\s+/g, '');
+            const ok = cod === 'while';
+            registrarIntento('M07', 'Básico', ok, cod);
+            mostrarFeedback('feed_m7_b', ok, ok ? "Iniciaste el bucle interactivo de forma correcta." : "Escribe únicamente la palabra reservada 'while' en minúsculas.");
+        }
+        function validarM7I() {
+            const cod = document.getElementById('cod_m07_i').value.replace(/\s+/g, '');
+            const ok = cod === 'numero=numero+1' || cod === 'numero+=1';
+            registrarIntento('M07', 'Intermedio', ok, cod);
+            mostrarFeedback('feed_m7_i', ok, ok ? "Incremento asignado para detener el bucle infinito." : "Escribe la instrucción de incremento sumándole 1 a la variable: numero = numero + 1");
+        }
+        function validarM7A() {
+            const cod = document.getElementById('cod_m07_a').value.replace(/\s+/g, '');
+            const ok = cod.includes('c=1') && cod.includes('whilec<=3:') && cod.includes('print(c)') && (cod.includes('c+=1') || cod.includes('c=c+1'));
+            registrarIntento('M07', 'Avanzado', ok, cod);
+            mostrarFeedback('feed_m7_a', ok, ok ? "Estructura cíclica repetitiva de 4 líneas completada con éxito." : "Escribe el ciclo en orden: la variable c = 1, la cabecera while c <= 3:, el print(c) con sangría y el incremento c = c + 1");
+        }
+        function validarM7C() {
+            const cod = document.getElementById('cod_m07_c').value.replace(/\s+/g, '');
+            const ok = cod === 'whileTrue:';
+            registrarIntento('M07', 'Reto', ok, cod);
+            mostrarFeedback('feed_m7_c', ok, ok ? "Bucle infinito controlado mediante True exitoso." : "La sintaxis exacta requiere la primera letra mayúscula: 'while True:'");
+        }
+        // MÓDULO 08: CONTAR VUELTAS EXACTAS (FOR)
+        function validarM8B() {
+            const cod = document.getElementById('cod_m08_b').value.replace(/\s+/g, '');
+            const ok = cod === 'for';
+            registrarIntento('M08', 'Básico', ok, cod);
+            mostrarFeedback('feed_m8_b', ok, ok ? "Iniciaste el ciclo determinado correctamente." : "Escribe únicamente la palabra reservada 'for' en minúsculas.");
+        }
+        function validarM8I() {
+            const cod = document.getElementById('cod_m08_i').value.replace(/\s+/g, '');
+            const ok = cod === '10';
+            registrarIntento('M08', 'Intermedio', ok, cod);
+            mostrarFeedback('feed_m8_i', ok, ok ? "Estableciste las 10 vueltas en el rango." : "Escribe únicamente el número de repeticiones requerido: '10'.");
+        }
+        function validarM8A() {
+            const cod = document.getElementById('cod_m08_a').value.replace(/\s+/g, '');
+            const ok = cod.includes('forvalinrange(3):') && cod.includes('print("Linea")');
+            registrarIntento('M08', 'Avanzado', ok, cod);
+            mostrarFeedback('feed_m8_a', ok, ok ? "Ciclo for con impresión repetitiva completado." : "Escribe la cabecera for val in range(3): y adentro la línea con sangría print(\"Linea\")");
+        }
+        function validarM8C() {
+            const cod = document.getElementById('cod_m08_c').value.replace(/\s+/g, '');
+            const ok = cod.includes('forninrange(1,4):') && cod.includes('print(n)');
+            registrarIntento('M08', 'Reto', ok, cod);
+            mostrarFeedback('feed_m8_c', ok, ok ? "Iteración de variables de control por rango finalizada con éxito." : "Escribe el ciclo for n in range(1, 4): y adentro la línea con sangría print(n)");
+        }
+    </script>
+    <!-- Vinculación del script del buscador de sintaxis externo -->
+    <script src="buscador.js"></script>
+</body>
+</html>
